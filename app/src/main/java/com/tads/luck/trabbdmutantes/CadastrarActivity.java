@@ -26,12 +26,13 @@ public class CadastrarActivity extends AppCompatActivity {
 
     }
 
-    public void voltar(View view){
+    public void voltarDashboard(View view){
         Intent tela = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(tela);
+        this.finish();
     }
 
-    public void salvar(View view){
+    public void cadastrar(View view){
         String mutanteName = fieldName.getText().toString();
 
         if (mutanteDBoperation.validaNomeMutante(mutanteName)){
@@ -39,7 +40,7 @@ public class CadastrarActivity extends AppCompatActivity {
             Mutante mutante = new Mutante(mutanteName,mutanteSkills);
             if (mutanteDBoperation.addMutante(mutante) >= 0) {
                 Toast.makeText(getApplicationContext(),"Salvo com sucesso", Toast.LENGTH_SHORT).show();
-                voltar(view);
+                voltarDashboard(view);
             }
             else {
                 Toast.makeText(getApplicationContext(),"Erro ao salvar, tente novamente.", Toast.LENGTH_SHORT).show();

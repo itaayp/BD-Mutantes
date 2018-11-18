@@ -59,10 +59,29 @@ public class MutanteDAO {
         return retorno;
     }
 
-    public void deleteMutante(Mutante comment){
-        long id = comment.getId();
-        database.delete(MutanteBDWrapper.MUTANTES, MutanteBDWrapper.MUTANTE_ID + " = " + id, null);
-        database.delete(MutanteBDWrapper.SKILLS, MutanteBDWrapper.MUTANTE_SKILL_ID + " = " + id, null);
+    public Long editMutante(Mutante mutante){
+        long retorno = 0;
+
+        ContentValues mutanteUpdate = new ContentValues();
+        String whereClause  = MutanteBDWrapper.MUTANTE_ID + " = ?";
+        String[] whereArgs = {String.valueOf(mutante.getId())};
+        mutanteUpdate.put(MutanteBDWrapper.MUTANTE_NAME, mutante.getName());
+
+        long mutanteId = database.update(MutanteBDWrapper.MUTANTES, mutanteUpdate, whereClause, whereArgs);
+
+        if (mutanteId > 0){
+            mutante.setId(Integer.parseInt(String.valueOf(mutanteId)));
+            retorno = addSkills(mutante);
+        }
+
+        return retorno;
+    }
+
+    public Long deleteMutante(int mutanteId){
+        long retorno = database.delete(MutanteBDWrapper.MUTANTES, MutanteBDWrapper.MUTANTE_ID + " = " + mutanteId, null);
+        if(retorno >= 0)
+            retorno = database.delete(MutanteBDWrapper.SKILLS, MutanteBDWrapper.MUTANTE_SKILL_ID + " = " + mutanteId, null);
+        return retorno;
     }
 
     public List getAllMutantes(){
@@ -80,14 +99,16 @@ public class MutanteDAO {
     }
 
     public Mutante getMutante(int mutanteId){
-        String where  = ( mutanteId > 0 ? MutanteBDWrapper.MUTANTE_ID + " = " + mutanteId : null ) ;
-        Mutante mutante = new Mutante();
+        String whereClause  = MutanteBDWrapper.MUTANTE_ID + " = ?";
+        String[] whereArgs = {String.valueOf(mutanteId)};
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
-                 where, null, null,null,null);
+                whereClause, whereArgs, null,null,null);
+        Mutante mutante = new Mutante();
         if(cursor.moveToFirst()){
             mutante = parseMutante(cursor);
         }
         cursor.close();
+        mutante.setSkill(getSkills(mutanteId));
         return mutante;
     }
 
@@ -96,10 +117,31 @@ public class MutanteDAO {
         String[] whereArgs = {nome};
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
                 whereClause, whereArgs, null,null,null);
-        if(cursor.moveToFirst())
+        if(cursor.moveToFirst()){
+            cursor.close();
             return false;
-        else
+        }
+        else{
+            cursor.close();
             return true;
+        }
+    }
+
+    public String[] getSkills(int mutanteId){
+        String skills = "";
+        String whereClause  = MutanteBDWrapper.MUTANTE_SKILL_ID + " = ?";
+        String[] whereArgs = {String.valueOf(mutanteId)};
+        Cursor cursor = database.query(MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null);
+
+        if(cursor.moveToFirst()){
+            while (!cursor.isAfterLast()) {
+                skills += cursor.getString(1) + ";";
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return skills.split(";");
     }
 
     private Mutante parseMutante(Cursor cursor) {
