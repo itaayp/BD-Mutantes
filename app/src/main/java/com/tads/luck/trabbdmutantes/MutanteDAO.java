@@ -79,6 +79,29 @@ public class MutanteDAO {
         return mutantes;
     }
 
+    public Mutante getMutante(int mutanteId){
+        String where  = ( mutanteId > 0 ? MutanteBDWrapper.MUTANTE_ID + " = " + mutanteId : null ) ;
+        Mutante mutante = new Mutante();
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                 where, null, null,null,null);
+        if(cursor.moveToFirst()){
+            mutante = parseMutante(cursor);
+        }
+        cursor.close();
+        return mutante;
+    }
+
+    public boolean validaNomeMutante(String nome){
+        String whereClause  = MutanteBDWrapper.MUTANTE_NAME + " = ?";
+        String[] whereArgs = {nome};
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null);
+        if(cursor.moveToFirst())
+            return false;
+        else
+            return true;
+    }
+
     private Mutante parseMutante(Cursor cursor) {
         Mutante mutante = new Mutante();
         mutante.setId(cursor.getInt(0));

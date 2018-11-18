@@ -33,16 +33,20 @@ public class CadastrarActivity extends AppCompatActivity {
 
     public void salvar(View view){
         String mutanteName = fieldName.getText().toString();
-        String[] mutanteSkills = retornarSkills(fieldSkills.getText().toString());
-        Mutante mutante = new Mutante(mutanteName,mutanteSkills);
-        if (mutanteDBoperation.addMutante(mutante) >= 0)
-            Toast.makeText(getApplicationContext(),"Salvo com sucesso", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(getApplicationContext(),"Erro ao salvar", Toast.LENGTH_SHORT).show();
-        voltar(view);
-        //Toast.makeText(getApplicationContext(),mutanteName, Toast.LENGTH_SHORT).show();
-        //for(int c = 0; c < mutanteSkills.length; c++)
-        //Toast.makeText(getApplicationContext(),mutanteSkills[c], Toast.LENGTH_SHORT).show();
+
+        if (mutanteDBoperation.validaNomeMutante(mutanteName)){
+            String[] mutanteSkills = retornarSkills(fieldSkills.getText().toString());
+            Mutante mutante = new Mutante(mutanteName,mutanteSkills);
+            if (mutanteDBoperation.addMutante(mutante) >= 0) {
+                Toast.makeText(getApplicationContext(),"Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                voltar(view);
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"Erro ao salvar, tente novamente.", Toast.LENGTH_SHORT).show();
+            }
+        }else
+            Toast.makeText(getApplicationContext(),"Nome já existente, inserir um nome diferente.", Toast.LENGTH_SHORT).show();
+
     }
 
     private String[] retornarSkills(String skills){
