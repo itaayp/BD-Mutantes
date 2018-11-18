@@ -14,13 +14,16 @@
             android:label="splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".DashboardActivity"
-            android:label="main screen">
-        </activity>
+            android:label="main screen" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".ListarTodosActivity" />
+        <activity android:name=".NovoEdicaoActivity"></activity>
     </application>
 
 </manifest>
