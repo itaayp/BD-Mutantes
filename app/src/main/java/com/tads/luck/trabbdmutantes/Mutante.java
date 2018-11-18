@@ -1,6 +1,8 @@
 package com.tads.luck.trabbdmutantes;
 
-public class Mutante {
+import java.io.Serializable;
+
+public class Mutante implements Serializable{
 
     private int id;
     private String name;
