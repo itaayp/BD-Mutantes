@@ -164,8 +164,8 @@ public class MutanteDAO {
         List mutantes = new ArrayList();
         String whereClause  = MutanteBDWrapper.SKILL_NAME + " LIKE ?";
         String[] whereArgs = {"%"+habilidade+"%"};
-        Cursor cursor = database.query(MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
-                whereClause, whereArgs, null,null,null);
+        Cursor cursor = database.query(true,MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             int mutanteId = cursor.getInt(0);
