@@ -13,6 +13,7 @@ public class EditarActivity extends AppCompatActivity {
     private TextView fieldSkills;
     private MutanteDAO mutanteDBoperation;
     private int mutanteId;
+    private String mutanteName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +38,17 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void editar(View view){
-        String mutanteName = fieldName.getText().toString();
-
-        if (mutanteDBoperation.validaNomeMutante(mutanteName)){
+        String nome = fieldName.getText().toString();
+        boolean mesmoNome = false;
+        if (mutanteName.equals(nome))
+            mesmoNome = true;
+        if (mutanteDBoperation.validaNomeMutante(nome) || mesmoNome){
             String[] mutanteSkills = retornarSkills(fieldSkills.getText().toString());
-            Mutante mutante = new Mutante(mutanteName,mutanteSkills);
+            Mutante mutante = new Mutante(mutanteId,nome,mutanteSkills);
             if (mutanteDBoperation.editMutante(mutante) > 0) {
                 Toast.makeText(getApplicationContext(),"Salvo com sucesso.", Toast.LENGTH_SHORT).show();
                 voltarListar(view);
-            }
-            else {
+            }else {
                 Toast.makeText(getApplicationContext(),"Erro ao salvar, tente novamente.", Toast.LENGTH_SHORT).show();
             }
         }else
@@ -70,7 +72,8 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void preencherCamposMutante(Mutante mutante){
-        fieldName.setText(mutante.getName());
+        mutanteName = mutante.getName();
+        fieldName.setText(mutanteName);
         String skills = "";
         for (String skill : mutante.getSkill()) {
             skills += skill + ";";

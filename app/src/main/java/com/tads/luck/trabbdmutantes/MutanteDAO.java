@@ -131,8 +131,8 @@ public class MutanteDAO {
         String skills = "";
         String whereClause  = MutanteBDWrapper.MUTANTE_SKILL_ID + " = ?";
         String[] whereArgs = {String.valueOf(mutanteId)};
-        Cursor cursor = database.query(MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
-                whereClause, whereArgs, null,null,null);
+        Cursor cursor = database.query(true,MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null,null);
 
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
