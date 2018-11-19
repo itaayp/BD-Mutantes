@@ -27,4 +27,8 @@ public class DashboardActivity extends AppCompatActivity {
         Intent tela = new Intent(getApplicationContext(), PesquisarActivity.class);
         startActivity(tela);
     }
+
+    public void fechar(View view){
+        finishAffinity();
+    }
 }
