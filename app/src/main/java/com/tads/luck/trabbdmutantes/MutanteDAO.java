@@ -144,6 +144,45 @@ public class MutanteDAO {
         return skills.split(";");
     }
 
+    public List buscarPorNome(String nome){
+        String whereLike = MutanteBDWrapper.MUTANTE_NAME + " LIKE ?";
+        String[] whereArgs = {"%"+nome+"%"};
+        List mutantes = new ArrayList();
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                whereLike, whereArgs, null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Mutante mutante = parseMutante(cursor);
+            mutantes.add(mutante);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mutantes;
+    }
+
+    public List buscarPorHabilidade(String habilidade){
+        List mutantes = new ArrayList();
+        String whereClause  = MutanteBDWrapper.SKILL_NAME + " LIKE ?";
+        String[] whereArgs = {"%"+habilidade+"%"};
+        Cursor cursor = database.query(MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            int mutanteId = cursor.getInt(0);
+            Mutante mutante = getMutante(mutanteId);
+            if(mutantes.isEmpty())
+                mutantes.add(mutante);
+            else
+                for (Object item : mutantes) {
+                    if (((Mutante) item).getId() != mutanteId)
+                        mutantes.add(mutante);
+                }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mutantes;
+    }
+
     private Mutante parseMutante(Cursor cursor) {
         Mutante mutante = new Mutante();
         mutante.setId(cursor.getInt(0));
