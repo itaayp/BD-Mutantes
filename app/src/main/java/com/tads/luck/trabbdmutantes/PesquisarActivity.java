@@ -22,9 +22,6 @@ public class PesquisarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisar);
 
-        mutanteDBoperation = new MutanteDAO(this);
-        mutanteDBoperation.open();
-
         List values = new ArrayList();
 
         list = (ListView) findViewById(R.id.list);
@@ -34,6 +31,8 @@ public class PesquisarActivity extends AppCompatActivity {
     }
 
     public void pesquisarNome(View view){
+        mutanteDBoperation = new MutanteDAO(getApplicationContext());
+        mutanteDBoperation.open();
         ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
         adapter.clear();
         EditText text = (EditText) findViewById(R.id.input);
@@ -45,9 +44,12 @@ public class PesquisarActivity extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
         }
+        mutanteDBoperation.close();
     }
 
     public void pesquisarHabilidade(View view){
+        mutanteDBoperation = new MutanteDAO(getApplicationContext());
+        mutanteDBoperation.open();
         ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
         adapter.clear();
         EditText text = (EditText) findViewById(R.id.input);
@@ -59,6 +61,7 @@ public class PesquisarActivity extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
         }
+        mutanteDBoperation.close();
     }
 
     public void voltarPesquisar(View view){
@@ -67,15 +70,4 @@ public class PesquisarActivity extends AppCompatActivity {
         this.finish();
     }
 
-    @Override
-    protected void onResume() {
-        mutanteDBoperation.open();
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        mutanteDBoperation.close();
-        super.onPause();
-    }
 }
