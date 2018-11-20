@@ -40,7 +40,8 @@ public class PesquisarActivity extends AppCompatActivity {
             List mutantes = mutanteDBoperation.buscarPorNome(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
-                    adapter.add(mutante);
+                    if (mutante != null)
+                        adapter.add(mutante);
                 }
             else{
                 Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
@@ -59,7 +60,8 @@ public class PesquisarActivity extends AppCompatActivity {
             List mutantes = mutanteDBoperation.buscarPorHabilidade(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
-                    adapter.add(mutante);
+                    if (mutante != null)
+                        adapter.add(mutante);
                 }
             else{
                 Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();

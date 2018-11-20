@@ -167,18 +167,18 @@ public class MutanteDAO {
         Cursor cursor = database.query(true,MutanteBDWrapper.SKILLS, SKILL_TABLE_COLUMNS,
                 whereClause, whereArgs, null,null,null,null);
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            int mutanteId = cursor.getInt(0);
-            Mutante mutante = getMutante(mutanteId);
-            if(mutantes.isEmpty())
-                mutantes.add(mutante);
-            else
-                for (Object item : mutantes) {
-                    if (((Mutante) item).getId() != mutanteId)
-                        mutantes.add(mutante);
-                }
-            cursor.moveToNext();
-        }
+            while (!cursor.isAfterLast()) {
+                int mutanteId = cursor.getInt(0);
+                Mutante mutante = getMutante(mutanteId);
+                if (mutantes.isEmpty())
+                    mutantes.add(mutante);
+                else
+                    for (Object item : mutantes) {
+                        if (((Mutante) item).getId() != mutanteId)
+                            mutantes.add(mutante);
+                    }
+                cursor.moveToNext();
+            }
         cursor.close();
         return mutantes;
     }
