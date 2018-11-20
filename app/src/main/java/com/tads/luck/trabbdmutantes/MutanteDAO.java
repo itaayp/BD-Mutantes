@@ -34,7 +34,7 @@ public class MutanteDAO {
 
         ContentValues mutanteInsert = new ContentValues();
 
-        mutanteInsert.put(MutanteBDWrapper.MUTANTE_NAME, mutante.getName());
+        mutanteInsert.put(MutanteBDWrapper.MUTANTE_NAME, mutante.getName().toLowerCase());
 
         long mutanteId = database.insert(MutanteBDWrapper.MUTANTES, null, mutanteInsert);
 
@@ -65,7 +65,7 @@ public class MutanteDAO {
         ContentValues mutanteUpdate = new ContentValues();
         String whereClause  = MutanteBDWrapper.MUTANTE_ID + " = ?";
         String[] whereArgs = {String.valueOf(mutante.getId())};
-        mutanteUpdate.put(MutanteBDWrapper.MUTANTE_NAME, mutante.getName());
+        mutanteUpdate.put(MutanteBDWrapper.MUTANTE_NAME, mutante.getName().toLowerCase());
 
         long mutanteId = database.update(MutanteBDWrapper.MUTANTES, mutanteUpdate, whereClause, whereArgs);
 
@@ -114,7 +114,7 @@ public class MutanteDAO {
 
     public boolean validaNomeMutante(String nome){
         String whereClause  = MutanteBDWrapper.MUTANTE_NAME + " = ?";
-        String[] whereArgs = {nome};
+        String[] whereArgs = {nome.toLowerCase()};
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
                 whereClause, whereArgs, null,null,null);
         if(cursor.moveToFirst()){
