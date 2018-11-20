@@ -70,7 +70,7 @@ public class MutanteDAO {
         long mutanteId = database.update(MutanteBDWrapper.MUTANTES, mutanteUpdate, whereClause, whereArgs);
 
         if (mutanteId > 0){
-            mutante.setId(Integer.parseInt(String.valueOf(mutanteId)));
+            mutante.setId(Integer.parseInt(String.valueOf(mutante.getId())));
             retorno = addSkills(mutante);
         }
 
