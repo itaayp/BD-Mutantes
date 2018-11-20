@@ -8,39 +8,41 @@
 
     <Button
         android:id="@+id/btnCadastrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="245dp"
+        android:layout_height="58dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="70dp"
         android:onClick="telaCadastrar"
         android:text="Cadastrar" />
 
     <Button
         android:id="@+id/btnListar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="245dp"
+        android:layout_height="58dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginTop="190dp"
         android:onClick="telaListar"
         android:text="Listar" />
 
     <Button
         android:id="@+id/btnPesquisar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="245dp"
+        android:layout_height="58dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="310dp"
         android:onClick="telaPesquisar"
         android:text="Pesquisar" />
 
     <ImageButton
         android:id="@+id/btnFechar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="70dp"
         android:onClick="fechar"
         app:srcCompat="@android:drawable/ic_delete" />
 </RelativeLayout>
