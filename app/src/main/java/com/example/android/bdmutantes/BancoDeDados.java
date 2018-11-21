@@ -53,7 +53,7 @@ public class BancoDeDados {
 
     private Mutante parseMutante(Cursor cursor) {
         Mutante mutante = new Mutante();
-        mutante.setNome(cursor.getString(1));
+        mutante.setNome(cursor.getString(0));
         return mutante;
     }
 
