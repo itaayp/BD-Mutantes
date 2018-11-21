@@ -37,6 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnNovoMutante"
         android:layout_marginBottom="144dp"
+        android:onClick="openBuscarActivity"
         android:text="Pesquisar Mutantes"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="304dp" />

@@ -23,7 +23,8 @@
             android:label="main screen" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".ListarTodosActivity" />
-        <activity android:name=".NovoEdicaoActivity"></activity>
+        <activity android:name=".NovoEdicaoActivity" />
+        <activity android:name=".BuscarActivity"></activity>
     </application>
 
 </manifest>

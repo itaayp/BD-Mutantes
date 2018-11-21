@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarTodosActivity extends ListActivity {
+    private MeuOpenHelper openHelper;
     private BancoDeDados db;
     private List<Mutante> mutantes = new ArrayList<Mutante>();
     private MutantesAdapter mutantesAdapter;
@@ -33,7 +34,7 @@ public class ListarTodosActivity extends ListActivity {
         if (cursor.moveToFirst()) {
             do {
                 Mutante m = new Mutante();
-                m.nome = cursor.getString(cursor.getColumnIndex(BancoDeDados.KEY_NOME));
+                m.nome = cursor.getString(cursor.getColumnIndex(openHelper.KEY_NOME));
                 mutantes.add(m);
             } while (cursor.moveToNext());
         }

@@ -42,4 +42,9 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListarTodosActivity.class);
         startActivity(intent);
     }
+
+    public void openBuscarActivity(View view){
+        Intent tela = new Intent(getApplicationContext(), BuscarActivity.class);
+        startActivity(tela);
+    }
 }
