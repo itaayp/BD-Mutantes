@@ -9,14 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MutanteDAO {
+public class MutanteDao {
 
     private MutanteBDWrapper dbHelper;
     private String[] MUTANTE_TABLE_COLUMNS = { MutanteBDWrapper.MUTANTE_ID, MutanteBDWrapper.MUTANTE_NAME };
     private String[] SKILL_TABLE_COLUMNS = { MutanteBDWrapper.MUTANTE_SKILL_ID, MutanteBDWrapper.SKILL_NAME};
     private SQLiteDatabase database;
 
-    public MutanteDAO(Context context){
+    public MutanteDao(Context context){
         dbHelper = new MutanteBDWrapper(context);
     }
 

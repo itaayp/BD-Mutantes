@@ -11,14 +11,14 @@ public class CadastrarActivity extends AppCompatActivity {
 
     private TextView fieldName;
     private TextView fieldSkills;
-    private MutanteDAO mutanteDBoperation;
+    private MutanteDao mutanteDBoperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        mutanteDBoperation = new MutanteDAO(this);
+        mutanteDBoperation = new MutanteDao(this);
         mutanteDBoperation.open();
 
         fieldName = findViewById(R.id.mutanteName);

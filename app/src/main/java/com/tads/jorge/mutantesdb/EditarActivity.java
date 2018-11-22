@@ -11,7 +11,7 @@ public class EditarActivity extends AppCompatActivity {
 
     private TextView fieldName;
     private TextView fieldSkills;
-    private MutanteDAO mutanteDBoperation;
+    private MutanteDao mutanteDBoperation;
     private int mutanteId;
     private String mutanteName;
 
@@ -20,7 +20,7 @@ public class EditarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar);
 
-        mutanteDBoperation = new MutanteDAO(this);
+        mutanteDBoperation = new MutanteDao(this);
         mutanteDBoperation.open();
 
         fieldName = findViewById(R.id.mutanteName);

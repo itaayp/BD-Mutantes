@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ListarActivity extends AppCompatActivity {
 
-    private MutanteDAO mutanteDBoperation;
+    private MutanteDao mutanteDBoperation;
     private List listaMutantes;
     ListView list;
 
@@ -21,7 +21,7 @@ public class ListarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
-        mutanteDBoperation = new MutanteDAO(this);
+        mutanteDBoperation = new MutanteDao(this);
         mutanteDBoperation.open();
 
         listaMutantes = mutanteDBoperation.getAllMutantes();

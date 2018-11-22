@@ -6,17 +6,28 @@
     android:background="@color/colorYellow"
     android:orientation="vertical" >
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true">
+    </ListView>
+
     <EditText
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_margin="10dp"
         android:layout_centerVertical="true"
         android:textColor="@color/colorBlue"
-        android:layout_alignParentTop="true"
-        android:ems="10">
+        android:layout_below="@id/list"
+        android:hint="@string/nome_mutante"
+        android:singleLine="true"
+        android:inputType="textPersonName"
+        android:imeOptions="actionSearch">
 
         <requestFocus />
     </EditText>
@@ -24,7 +35,7 @@
     <Button
         android:id="@+id/btnNome"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_margin="10dp"
         android:layout_centerVertical="true"
         android:backgroundTint="@color/colorBlue"
@@ -36,21 +47,14 @@
     <Button
         android:id="@+id/btnHabilidade"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_margin="10dp"
         android:layout_centerVertical="true"
         android:backgroundTint="@color/colorBlue"
         android:textColor="@color/colorYellow"
         android:layout_below="@+id/btnNome"
         android:onClick="pesquisarHabilidade"
-        android:text="Pesquisar por habilidade" />
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/input"></ListView>
+        android:text="@string/skills_mutante" />
 
     <Button
         android:id="@+id/btnVoltar"

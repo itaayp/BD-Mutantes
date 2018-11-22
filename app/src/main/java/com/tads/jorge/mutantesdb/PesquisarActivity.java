@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PesquisarActivity extends AppCompatActivity {
 
-    private MutanteDAO mutanteDBoperation;
+    private MutanteDao mutanteDBoperation;
     ListView list;
 
     @Override
@@ -33,7 +33,7 @@ public class PesquisarActivity extends AppCompatActivity {
     public void pesquisarNome(View view){
         EditText text = findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDAO(getApplicationContext());
+            mutanteDBoperation = new MutanteDao(getApplicationContext());
             mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
@@ -44,7 +44,7 @@ public class PesquisarActivity extends AppCompatActivity {
                         adapter.add(mutante);
                 }
             else{
-                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Nenhum mutante encontrado.", Toast.LENGTH_SHORT).show();
             }
             mutanteDBoperation.close();
         }
@@ -53,7 +53,7 @@ public class PesquisarActivity extends AppCompatActivity {
     public void pesquisarHabilidade(View view){
         EditText text = findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDAO(getApplicationContext());
+            mutanteDBoperation = new MutanteDao(getApplicationContext());
             mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
@@ -64,7 +64,7 @@ public class PesquisarActivity extends AppCompatActivity {
                         adapter.add(mutante);
                 }
             else{
-                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Nenhum mutante encontrado.", Toast.LENGTH_SHORT).show();
             }
             mutanteDBoperation.close();
         }
