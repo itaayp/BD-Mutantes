@@ -33,20 +33,12 @@ public class BancoDeDados {
         openHelper.close();
     }
 
-    public long insereMutante(String nome) {
-        ContentValues campos = new ContentValues();
-        campos.put(openHelper.KEY_NOME, nome);
-        return db.insert(openHelper.NOME_TABELA, null, campos);
-    }
-
     public boolean apagaMutante(String nome) {
         return db.delete(openHelper.NOME_TABELA, openHelper.KEY_NOME + "=" + nome, null) > 0;
     }
 
 
     public Cursor retornaTodosMutantes() {
-        insereMutante("Itay");
-
         return db.query(openHelper.NOME_TABELA, new String[] { openHelper.KEY_NOME },
                 null, null, null, null, null);
     }
@@ -125,5 +117,50 @@ public class BancoDeDados {
         }
         cursor.close();
         return mutantes;
+    }
+
+    public boolean validaNomeMutante(String nome){
+        String whereClause  = openHelper.KEY_NOME + " = ?";
+        String[] whereArgs = {nome.toLowerCase()};
+        Cursor cursor = db.query(openHelper.NOME_TABELA, MUTANTE_TABLE_COLUMNS,
+                whereClause, whereArgs, null,null,null);
+        if(cursor.moveToFirst()){
+            cursor.close();
+            return false;
+        }
+        else{
+            cursor.close();
+            return true;
+        }
+    }
+
+    public Long insereMutante(Mutante mutante){
+
+        long retorno = 0;
+
+        ContentValues mutanteInsert = new ContentValues();
+
+        mutanteInsert.put(openHelper.KEY_NOME, mutante.getNome().toLowerCase());
+
+        long rowId = db.insert(openHelper.NOME_TABELA, null, mutanteInsert);
+
+        if (rowId > 0){
+            retorno = insereSkills(mutante);
+        }
+
+        return retorno;
+    }
+
+    public Long insereSkills(Mutante mutante){
+        long retorno = 0;
+
+        for (String skill : mutante.getSkill()) {
+            ContentValues skillsInsert = new ContentValues();
+            skillsInsert.put(openHelper.MUTANTE_SKILL_ID, mutante.getNome());
+            skillsInsert.put(openHelper.SKILL_NAME, skill);
+            retorno = db.insert(openHelper.SKILLS, null, skillsInsert);
+        }
+
+        return retorno;
     }
 }

@@ -22,7 +22,7 @@ public class MeuOpenHelper extends SQLiteOpenHelper {
     public static final String SKILL_NAME = "_name";
 
     private static final String DATABASE_CREATE_SKILLS = "create table " +
-            SKILLS + "(" + MUTANTE_SKILL_ID + " integer, " +
+            SKILLS + "(" + MUTANTE_SKILL_ID + " text primary key, " +
             SKILL_NAME + " text not null);";
 
 
