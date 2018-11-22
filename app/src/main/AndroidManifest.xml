@@ -24,7 +24,8 @@
         <activity android:name=".CadastroActivity" />
         <activity android:name=".ListarTodosActivity" />
         <activity android:name=".NovoEdicaoActivity" />
-        <activity android:name=".BuscarActivity"></activity>
+        <activity android:name=".BuscarActivity" />
+        <activity android:name=".DetalhesActivity"></activity>
     </application>
 
 </manifest>
