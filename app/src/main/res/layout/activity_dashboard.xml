@@ -9,44 +9,51 @@
 
     <Button
         android:id="@+id/btnCadastrar"
-        android:layout_width="245dp"
-        android:layout_height="58dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/colorBlue"
+        android:contentDescription="@string/cadastrar"
         android:onClick="telaCadastrar"
         android:text="@string/cadastrar"
-        android:textColor="@color/colorAccent"
-        android:backgroundTint="@color/colorPrimary"
-        />
+        android:textColor="@color/colorYellow" />
 
     <Button
         android:id="@+id/btnListar"
-        android:layout_width="245dp"
-        android:layout_height="58dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="190dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/btnCadastrar"
         android:onClick="telaListar"
-        android:text="@string/listar" />
+        android:text="@string/listar"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow"/>
 
     <Button
         android:id="@+id/btnPesquisar"
-        android:layout_width="245dp"
-        android:layout_height="58dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
         android:layout_centerVertical="true"
-        android:layout_marginTop="310dp"
+        android:layout_below="@id/btnListar"
         android:onClick="telaPesquisar"
-        android:text="@string/pesquisar" />
+        android:text="@string/pesquisar"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow" />
 
-    <ImageButton
+    <Button
         android:id="@+id/btnFechar"
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="fechar"
         android:onClick="fechar"
-        app:srcCompat="@android:drawable/ic_delete" />
+        android:text="@string/fechar"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow" />
 </RelativeLayout>
