@@ -4,4 +4,5 @@
     <string name="listar">📇    Listar XMEN</string>
     <string name="pesquisar">🔎    Pesquisar XMEN</string>
     <string name="fechar">❌</string>
+    <string name="voltar">◀️</string>
 </resources>
