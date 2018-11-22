@@ -10,15 +10,13 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="212dp"
-        android:contentDescription="logo"
+        android:contentDescription="xmen wallpaper"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/xmenwallpaper" />
 </android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.tads.luck.trabbdmutantes;
+package com.tads.jorge.mutantesdb;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.tads.luck.trabbdmutantes", appContext.getPackageName());
+        assertEquals("com.tads.jorge.mutantesdb", appContext.getPackageName());
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorYellow"
     tools:context=".DashboardActivity">
 
     <Button
@@ -14,7 +15,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:onClick="telaCadastrar"
-        android:text="Cadastrar" />
+        android:text="@string/cadastrar"
+        android:textColor="@color/colorAccent"
+        android:backgroundTint="@color/colorPrimary"
+        />
 
     <Button
         android:id="@+id/btnListar"
@@ -24,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
         android:onClick="telaListar"
-        android:text="Listar" />
+        android:text="@string/listar" />
 
     <Button
         android:id="@+id/btnPesquisar"
@@ -34,7 +38,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="310dp"
         android:onClick="telaPesquisar"
-        android:text="Pesquisar" />
+        android:text="@string/pesquisar" />
 
     <ImageButton
         android:id="@+id/btnFechar"

@@ -1,4 +1,4 @@
-package com.tads.luck.trabbdmutantes;
+package com.tads.jorge.mutantesdb;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -24,14 +24,14 @@ public class PesquisarActivity extends AppCompatActivity {
 
         List values = new ArrayList();
 
-        list = (ListView) findViewById(R.id.list);
+        list = findViewById(R.id.list);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
         list.setAdapter(adapter);
     }
 
     public void pesquisarNome(View view){
-        EditText text = (EditText) findViewById(R.id.input);
+        EditText text = findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
             mutanteDBoperation = new MutanteDAO(getApplicationContext());
             mutanteDBoperation.open();
@@ -51,7 +51,7 @@ public class PesquisarActivity extends AppCompatActivity {
     }
 
     public void pesquisarHabilidade(View view){
-        EditText text = (EditText) findViewById(R.id.input);
+        EditText text = findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
             mutanteDBoperation = new MutanteDAO(getApplicationContext());
             mutanteDBoperation.open();

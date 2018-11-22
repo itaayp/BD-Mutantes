@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">trabBDMutantes</string>
+    <string name="app_name">mutantesdb</string>
+    <string name="cadastrar">➕  Inserir XMEN</string>
+    <string name="listar">📇  Listar XMEN</string>
+    <string name="pesquisar">🔎  Pesquisar XMEN</string>
 </resources>

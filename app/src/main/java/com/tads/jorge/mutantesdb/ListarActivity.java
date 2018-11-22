@@ -1,4 +1,4 @@
-package com.tads.luck.trabbdmutantes;
+package com.tads.jorge.mutantesdb;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +26,7 @@ public class ListarActivity extends AppCompatActivity {
 
         listaMutantes = mutanteDBoperation.getAllMutantes();
 
-        list = (ListView) findViewById(R.id.list);
+        list = findViewById(R.id.list);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaMutantes);
         list.setAdapter(adapter);

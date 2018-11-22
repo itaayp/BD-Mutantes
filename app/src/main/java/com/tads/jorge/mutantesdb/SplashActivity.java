@@ -1,4 +1,4 @@
-package com.tads.luck.trabbdmutantes;
+package com.tads.jorge.mutantesdb;
 
 import android.content.Intent;
 import android.os.Handler;
