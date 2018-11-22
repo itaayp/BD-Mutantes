@@ -3,13 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorYellow"
     android:orientation="vertical" >
 
     <EditText
         android:id="@+id/input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorBlue"
         android:layout_alignParentTop="true"
         android:ems="10">
 
@@ -19,16 +24,23 @@
     <Button
         android:id="@+id/btnNome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow"
         android:layout_below="@+id/input"
         android:onClick="pesquisarNome"
-        android:text="Pesquisar por nome" />
+        android:text="@string/pesquisar_por_nome" />
 
     <Button
         android:id="@+id/btnHabilidade"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow"
         android:layout_below="@+id/btnNome"
         android:onClick="pesquisarHabilidade"
         android:text="Pesquisar por habilidade" />
@@ -36,17 +48,19 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="383dp"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnHabilidade"></ListView>
+        android:layout_below="@+id/input"></ListView>
 
     <Button
         android:id="@+id/btnVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:backgroundTint="@color/colorBlue"
+        android:textColor="@color/colorYellow"
         android:onClick="voltarPesquisar"
-        android:text="Voltar" />
+        android:text="@string/voltar" />
 
 </RelativeLayout>

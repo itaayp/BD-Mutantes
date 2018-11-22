@@ -5,4 +5,9 @@
     <string name="pesquisar">🔎    Pesquisar XMEN</string>
     <string name="fechar">❌</string>
     <string name="voltar">◀️</string>
+    <string name="salvar">💾    Salvar</string>
+    <string name="pesquisar_por_nome">Pesquisar por nome</string>
+    <string name="excluir">🔥    Excluir</string>
+    <string name="nome_mutante">Ex: Wolverine</string>
+    <string name="skills_mutante">Ex: regenaração;garras;ossos de adamantium</string>
 </resources>

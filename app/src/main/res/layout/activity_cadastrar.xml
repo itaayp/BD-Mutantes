@@ -15,10 +15,8 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:hint="Nome do mutante"
-        android:inputType="textPersonName"
-        android:backgroundTint="@color/colorBlue"
-        android:textColor="@color/colorYellow"/>
+        android:hint="@string/nome_mutante"
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/mutanteSkills"
@@ -27,10 +25,8 @@
         android:layout_margin="10dp"
         android:layout_centerVertical="true"
         android:layout_below="@id/mutanteName"
-        android:hint="Habilidades do mutante \n(separadas por: ; )"
-        android:inputType="textPersonName"
-        android:backgroundTint="@color/colorBlue"
-        android:textColor="@color/colorYellow"/>
+        android:hint="@string/skills_mutante"
+        android:inputType="textPersonName"/>
 
     <Button
         android:id="@+id/btnEditar"
@@ -40,7 +36,7 @@
         android:layout_centerVertical="true"
         android:layout_below="@id/mutanteSkills"
         android:onClick="cadastrar"
-        android:text="Salvar"
+        android:text="@string/salvar"
         android:backgroundTint="@color/colorBlue"
         android:textColor="@color/colorYellow"/>
 
