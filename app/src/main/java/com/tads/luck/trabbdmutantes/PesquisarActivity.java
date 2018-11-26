@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PesquisarActivity extends AppCompatActivity {
 
-    private MutanteDAO mutanteDBoperation;
+    private ServiceCaller serviceCaller;
     ListView list;
 
     @Override
@@ -23,6 +23,8 @@ public class PesquisarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pesquisar);
 
         List values = new ArrayList();
+
+        serviceCaller = new ServiceCaller();
 
         list = (ListView) findViewById(R.id.list);
 
@@ -33,11 +35,9 @@ public class PesquisarActivity extends AppCompatActivity {
     public void pesquisarNome(View view){
         EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDAO(getApplicationContext());
-            mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
-            List mutantes = mutanteDBoperation.buscarPorNome(text.getText().toString());
+            List mutantes = serviceCaller.pesquisarNome(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
                     if (mutante != null)
@@ -46,18 +46,15 @@ public class PesquisarActivity extends AppCompatActivity {
             else{
                 Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
             }
-            mutanteDBoperation.close();
         }
     }
 
     public void pesquisarHabilidade(View view){
         EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDAO(getApplicationContext());
-            mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
-            List mutantes = mutanteDBoperation.buscarPorHabilidade(text.getText().toString());
+            List mutantes = serviceCaller.buscarPorHabilidade(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
                     if (mutante != null)
@@ -66,7 +63,6 @@ public class PesquisarActivity extends AppCompatActivity {
             else{
                 Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
             }
-            mutanteDBoperation.close();
         }
     }
 
