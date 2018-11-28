@@ -1,8 +1,29 @@
 package com.tads.luck.trabbdmutantes;
 
-import java.util.List;
+import android.content.Context;
 
-public class ServiceCaller {
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import java.util.List;
+public class ServiceCaller implements Response.Listener, Response.ErrorListener {
+    public static RequestQueue mQueue;
+
+    public void ServiceCaller(Context context){
+        mQueue = CustomVolleyRequestQueue.getInstance(context).getRequestQueue();
+
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error){
+
+    }
+
+    @Override
+    public void onResponse(Object response) {
+
+    }
 
 
     public List pesquisarNome(String s) {
@@ -47,6 +68,12 @@ public class ServiceCaller {
         // retornar response.setSucess false se tiver campos errados com msg
         // retornar response null se ocorreu erro na chamada de service
         ServiceResponse serviceResponse = new ServiceResponse();
+
+
+
+
+
         return serviceResponse;
     }
+
 }
