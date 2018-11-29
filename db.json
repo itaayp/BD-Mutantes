@@ -1,0 +1,23 @@
+{
+  "nome": [
+  ],
+  "skills": [
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "login": [
+    {
+      "password": "123",
+      "id": 1,
+      "username": "Jorge"
+    }
+  ],
+  "user": [
+    {
+      "password": "123",
+      "id": 1,
+      "username": "Jorge"
+    }
+  ]
+}

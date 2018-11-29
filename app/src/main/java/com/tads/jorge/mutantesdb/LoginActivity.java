@@ -33,8 +33,13 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         User u = new User();
         u.setUsername(loginEditText.getText().toString());
         u.setPassword(passwordEditText.getText().toString());
-        serviceCaller = new ServiceCaller(view.getContext());
-        response = serviceCaller.getUser(u,this);
+        if (u.getUsername().equals("") || u.getPassword().equals("")) {
+            Toast.makeText(getApplicationContext(),"Insira usuário e senha.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            serviceCaller = new ServiceCaller(view.getContext());
+            response = serviceCaller.getUser(u,this);
+        }
         if(response != null){
 
         }

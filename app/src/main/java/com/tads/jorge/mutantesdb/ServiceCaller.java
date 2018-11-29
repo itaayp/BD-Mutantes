@@ -31,7 +31,7 @@ public class ServiceCaller {
 
     public ServiceResponse pesquisarNome(String s,PesquisarActivity tela) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/nome/" + s ;
+        String url = "http://192.168.100.7:3000/nome/" + s ;
 
         final CustomJsonObjectRequest jsonRequest = new CustomJsonObjectRequest(Request.Method.GET,url,new JSONObject(),tela,tela);
         jsonRequest.setTag("UserAutentication");
@@ -42,7 +42,7 @@ public class ServiceCaller {
 
     public ServiceResponse buscarPorHabilidade(String s,PesquisarActivity tela) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/skills/" + s ;
+        String url = "http://192.168.100.7:3000/skills/" + s ;
 
         final CustomJsonObjectRequest jsonRequest = new CustomJsonObjectRequest(Request.Method.GET,url,new JSONObject(),tela,tela);
         jsonRequest.setTag("UserAutentication");
@@ -54,7 +54,7 @@ public class ServiceCaller {
 
     public ServiceResponse getAllMutantes(ListarActivity tela) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/mutantes/";
+        String url = "http://192.168.100.7:3000/mutantes/";
         final CustomJsonObjectRequest jsonRequest = new CustomJsonObjectRequest(Request.Method.GET,url,new JSONObject(),tela,tela);
         jsonRequest.setTag("UserAutentication");
 
@@ -69,7 +69,7 @@ public class ServiceCaller {
 
     public ServiceResponse getMutante(int mutanteId ) {
         ServiceResponse serviceResponse = new ServiceResponse();
-//        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/skills/" + mutanteId ;
+//        String url = "http://192.168.100.7:3000/skills/" + mutanteId ;
 //
 //        final CustomJsonObjectRequest jsonRequest = new CustomJsonObjectRequest(Request.Method.GET,url,new JSONObject(),tela,tela);
 //        jsonRequest.setTag("UserAutentication");
@@ -85,7 +85,7 @@ public class ServiceCaller {
 
     public ServiceResponse addMutante(Mutante m, CadastrarActivity tela) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/mutante";
+        String url = "http://192.168.100.7:3000/mutante";
         Map<String, Object> postParam= new HashMap<String, Object>();
         //postParam.put("Content-Type", "application/json; charset=utf-8");
         postParam.put("id",0);
@@ -101,7 +101,7 @@ public class ServiceCaller {
 
     public ServiceResponse addUser(User u, CadastrarUsuarioActivity tela) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/user";
+        String url = "http://192.168.100.7:3000/user";
         Map<String, Object> postParam= new HashMap<String, Object>();
         //postParam.put("Content-Type", "application/json; charset=utf-8");
         postParam.put("id",0);
@@ -118,7 +118,7 @@ public class ServiceCaller {
 
     public ServiceResponse getUser(User u,LoginActivity login) {
         ServiceResponse serviceResponse = new ServiceResponse();
-        String url = "http://192.168.100.56:8084/trabWSMutantes/webresources/mutantes/login";
+        String url = "http://192.168.100.7:3000/login";
         Map<String, Object> postParam= new HashMap<String, Object>();
         //postParam.put("Content-Type", "application/json; charset=utf-8");
         postParam.put("id",0);
