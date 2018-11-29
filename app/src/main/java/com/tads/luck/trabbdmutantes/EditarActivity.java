@@ -60,8 +60,8 @@ public class EditarActivity extends AppCompatActivity {
     public void buscarMutante(Intent tela){
         mutanteId = Integer.parseInt(tela.getStringExtra("id"));
         if(mutanteId > 0){
-            Mutante mutante = serviceCaller.getMutante(mutanteId);
-            preencherCamposMutante(mutante);
+            ServiceResponse mutante = serviceCaller.getMutante(mutanteId);
+            //preencherCamposMutante(mutante);
         }else {
             Toast.makeText(getApplicationContext(),"Erro ao buscar dados de Mutante.", Toast.LENGTH_SHORT).show();
             this.finish();
@@ -79,13 +79,13 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void excluir(View view){
-        if (serviceCaller.deleteMutante(mutanteId)) {
-            Toast.makeText(getApplicationContext(),"Excluído com sucesso.", Toast.LENGTH_SHORT).show();
-            voltarListar(view);
-        }
-        else {
-            Toast.makeText(getApplicationContext(),"Erro ao excluir, tente novamente.", Toast.LENGTH_SHORT).show();
-        }
+//        if (serviceCaller.deleteMutante(mutanteId)) {
+//            Toast.makeText(getApplicationContext(),"Excluído com sucesso.", Toast.LENGTH_SHORT).show();
+//            voltarListar(view);
+//        }
+//        else {
+//            Toast.makeText(getApplicationContext(),"Erro ao excluir, tente novamente.", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override

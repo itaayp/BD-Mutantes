@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PesquisarActivity extends AppCompatActivity {
+public class PesquisarActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener {
 
     private ServiceCaller serviceCaller;
     ListView list;
@@ -35,33 +38,31 @@ public class PesquisarActivity extends AppCompatActivity {
     public void pesquisarNome(View view){
         EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
-            adapter.clear();
-            List mutantes = serviceCaller.pesquisarNome(text.getText().toString());
-            if (!mutantes.isEmpty())
-                for (Object mutante : mutantes) {
-                    if (mutante != null)
-                        adapter.add(mutante);
-                }
-            else{
-                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
-            }
+            serviceCaller.pesquisarNome(text.getText().toString(),this);
         }
     }
 
     public void pesquisarHabilidade(View view){
         EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
-            adapter.clear();
-            List mutantes = serviceCaller.buscarPorHabilidade(text.getText().toString());
-            if (!mutantes.isEmpty())
-                for (Object mutante : mutantes) {
-                    if (mutante != null)
-                        adapter.add(mutante);
-                }
-            else{
-                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
+            serviceCaller.buscarPorHabilidade(text.getText().toString(),this);
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
+        adapter.clear();
+        List mutantes = JsonTranslator.getListMuttante(response);
+        if (!mutantes.isEmpty()) {
+            for (Object mutante : mutantes) {
+                if (mutante != null)
+                    adapter.add(mutante);
             }
         }
     }
