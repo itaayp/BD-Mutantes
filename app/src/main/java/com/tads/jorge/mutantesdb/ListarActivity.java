@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ListarActivity extends AppCompatActivity {
 
-    private MutanteDao mutanteDBoperation;
+    private ServiceCaller serviceCaller;
     private List listaMutantes;
     ListView list;
 
@@ -21,12 +21,11 @@ public class ListarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
-        mutanteDBoperation = new MutanteDao(this);
-        mutanteDBoperation.open();
+        serviceCaller = new ServiceCaller();
 
-        listaMutantes = mutanteDBoperation.getAllMutantes();
+        listaMutantes = serviceCaller.getAllMutantes();
 
-        list = findViewById(R.id.list);
+        list = (ListView) findViewById(R.id.list);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaMutantes);
         list.setAdapter(adapter);
@@ -50,13 +49,11 @@ public class ListarActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        mutanteDBoperation.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        mutanteDBoperation.close();
         super.onPause();
     }
 }

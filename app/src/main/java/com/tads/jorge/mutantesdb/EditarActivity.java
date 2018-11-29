@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditarActivity extends AppCompatActivity {
 
     private TextView fieldName;
     private TextView fieldSkills;
-    private MutanteDao mutanteDBoperation;
+    private ServiceCaller serviceCaller;
     private int mutanteId;
     private String mutanteName;
 
@@ -20,8 +23,7 @@ public class EditarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar);
 
-        mutanteDBoperation = new MutanteDao(this);
-        mutanteDBoperation.open();
+        serviceCaller = new ServiceCaller();
 
         fieldName = findViewById(R.id.mutanteName);
         fieldSkills = findViewById(R.id.mutanteSkills);
@@ -38,32 +40,27 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void editar(View view){
-        String nome = fieldName.getText().toString();
-        boolean mesmoNome = false;
-        if (mutanteName.equals(nome))
-            mesmoNome = true;
-        if (mutanteDBoperation.validaNomeMutante(nome) || mesmoNome){
-            String[] mutanteSkills = retornarSkills(fieldSkills.getText().toString());
-            Mutante mutante = new Mutante(mutanteId,nome,mutanteSkills);
-            if (mutanteDBoperation.editMutante(mutante) > 0) {
-                Toast.makeText(getApplicationContext(),"Salvo com sucesso.", Toast.LENGTH_SHORT).show();
+        Mutante m = new Mutante();
+        m.setMutanteName(fieldName.getText().toString());
+        m.setSkills(StringUtil.retornarSkills(fieldSkills.getText().toString()));
+        ServiceResponse response = serviceCaller.editMutante(m);
+        if(response != null) {
+            if (response.isSucess()) {
+                Toast.makeText(getApplicationContext(), "Salvo com sucesso.", Toast.LENGTH_SHORT).show();
                 voltarListar(view);
-            }else {
-                Toast.makeText(getApplicationContext(),"Erro ao salvar, tente novamente.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), response.getMsg(), Toast.LENGTH_SHORT).show();
             }
-        }else
-            Toast.makeText(getApplicationContext(),"Nome já existente, inserir um nome diferente.", Toast.LENGTH_SHORT).show();
-
-    }
-
-    private String[] retornarSkills(String skills){
-        return skills.split(";");
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Erro grave ao editar, tente novamente mais tarde", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void buscarMutante(Intent tela){
         mutanteId = Integer.parseInt(tela.getStringExtra("id"));
         if(mutanteId > 0){
-            Mutante mutante = mutanteDBoperation.getMutante(mutanteId);
+            Mutante mutante = serviceCaller.getMutante(mutanteId);
             preencherCamposMutante(mutante);
         }else {
             Toast.makeText(getApplicationContext(),"Erro ao buscar dados de Mutante.", Toast.LENGTH_SHORT).show();
@@ -72,17 +69,17 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void preencherCamposMutante(Mutante mutante){
-        mutanteName = mutante.getName();
+        mutanteName = mutante.getMutanteName();
         fieldName.setText(mutanteName);
         String skills = "";
-        for (String skill : mutante.getSkill()) {
-            skills += skill + ";";
+        for (Skill s : mutante.getSkills()) {
+            skills += s.getSkillName() + ";";
         }
         fieldSkills.setText(skills);
     }
 
     public void excluir(View view){
-        if (mutanteDBoperation.deleteMutante(mutanteId) > 0) {
+        if (serviceCaller.deleteMutante(mutanteId)) {
             Toast.makeText(getApplicationContext(),"Excluído com sucesso.", Toast.LENGTH_SHORT).show();
             voltarListar(view);
         }
@@ -93,13 +90,11 @@ public class EditarActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        mutanteDBoperation.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        mutanteDBoperation.close();
         super.onPause();
     }
 }

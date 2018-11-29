@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PesquisarActivity extends AppCompatActivity {
 
-    private MutanteDao mutanteDBoperation;
+    private ServiceCaller serviceCaller;
     ListView list;
 
     @Override
@@ -24,49 +24,45 @@ public class PesquisarActivity extends AppCompatActivity {
 
         List values = new ArrayList();
 
-        list = findViewById(R.id.list);
+        serviceCaller = new ServiceCaller();
+
+        list = (ListView) findViewById(R.id.list);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
         list.setAdapter(adapter);
     }
 
     public void pesquisarNome(View view){
-        EditText text = findViewById(R.id.input);
+        EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDao(getApplicationContext());
-            mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
-            List mutantes = mutanteDBoperation.buscarPorNome(text.getText().toString());
+            List mutantes = serviceCaller.pesquisarNome(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
                     if (mutante != null)
                         adapter.add(mutante);
                 }
             else{
-                Toast.makeText(getApplicationContext(),"Nenhum mutante encontrado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
             }
-            mutanteDBoperation.close();
         }
     }
 
     public void pesquisarHabilidade(View view){
-        EditText text = findViewById(R.id.input);
+        EditText text = (EditText) findViewById(R.id.input);
         if (!text.getText().toString().trim().isEmpty()){
-            mutanteDBoperation = new MutanteDao(getApplicationContext());
-            mutanteDBoperation.open();
             ArrayAdapter adapter = (ArrayAdapter) list.getAdapter();
             adapter.clear();
-            List mutantes = mutanteDBoperation.buscarPorHabilidade(text.getText().toString());
+            List mutantes = serviceCaller.buscarPorHabilidade(text.getText().toString());
             if (!mutantes.isEmpty())
                 for (Object mutante : mutantes) {
                     if (mutante != null)
                         adapter.add(mutante);
                 }
             else{
-                Toast.makeText(getApplicationContext(),"Nenhum mutante encontrado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Nenhum resultado encontrado.", Toast.LENGTH_SHORT).show();
             }
-            mutanteDBoperation.close();
         }
     }
 

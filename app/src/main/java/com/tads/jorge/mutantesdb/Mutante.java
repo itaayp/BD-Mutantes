@@ -1,29 +1,14 @@
 package com.tads.jorge.mutantesdb;
 
-import java.io.Serializable;
+import java.util.List;
 
-public class Mutante implements Serializable{
+public class Mutante {
 
     private int id;
-    private String name;
-    private String[] skill;
+    private String mutanteName;
+    private List<Skill> skills;
 
-    public Mutante(){
-        super();
-    }
-
-    public Mutante(String name, String[] skill) {
-        this.name = name;
-        this.skill = skill;
-    }
-
-    public Mutante(int id, String name, String[] skill) {
-        this.id = id;
-        this.name = name;
-        this.skill = skill;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -31,25 +16,21 @@ public class Mutante implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMutanteName() {
+        return mutanteName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMutanteName(String mutanteName) {
+        this.mutanteName = mutanteName;
     }
 
-    public String[] getSkill() {
-        return skill;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
-    public void setSkill(String[] skill) {
-        this.skill = skill;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }
 
