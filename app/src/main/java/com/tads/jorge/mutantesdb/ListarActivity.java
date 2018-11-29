@@ -8,9 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import java.util.List;
 
-public class ListarActivity extends AppCompatActivity {
+public class ListarActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener{
 
     private ServiceCaller serviceCaller;
     private List listaMutantes;
@@ -23,7 +26,7 @@ public class ListarActivity extends AppCompatActivity {
 
         serviceCaller = new ServiceCaller();
 
-        listaMutantes = serviceCaller.getAllMutantes();
+        serviceCaller.getAllMutantes(this);
 
         list = (ListView) findViewById(R.id.list);
 
@@ -55,5 +58,15 @@ public class ListarActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        listaMutantes = JsonTranslator.getListMuttante(response);
     }
 }

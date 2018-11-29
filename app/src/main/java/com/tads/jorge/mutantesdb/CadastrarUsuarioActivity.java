@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CadastrarUsuarioActivity extends AppCompatActivity {
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+public class CadastrarUsuarioActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener{
 
     private ServiceCaller serviceCaller;
     private EditText loginEditText;
@@ -30,15 +33,9 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
         u.setUsername(loginEditText.getText().toString());
         u.setPassword(passwordEditText.getText().toString());
 
-        ServiceResponse response = serviceCaller.addUser(u);
+        ServiceResponse response = serviceCaller.addUser(u,this);
         if(response != null){
-            if(response.isSucess()){
-                Toast.makeText(getApplicationContext(),"Usuario cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                voltarLogin(view);
-            }
-            else {
-                Toast.makeText(getApplicationContext(),response.getMsg(), Toast.LENGTH_SHORT).show();
-            }
+
         }
         else {
             Toast.makeText(getApplicationContext(),"Erro ao salvar, tente novamente.", Toast.LENGTH_SHORT).show();
@@ -47,6 +44,18 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        Toast.makeText(getApplicationContext(),"Usuario cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+        Intent tela = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(tela);
+        this.finish();
+    }
 
     public void voltarLogin(View view){
         Intent tela = new Intent(getApplicationContext(), LoginActivity.class);
